@@ -12,7 +12,7 @@
     factory(root, exports, require('lodash'), require('backbone'));
   } else if (typeof define === 'function' && define.amd) {
     define('backbone-relational', ['lodash', 'backbone', 'exports'], function(_, Backbone, exports) {
-      factory(root, exports, _, Backbone);
+      return factory(root, exports, _, Backbone);
     });
   } else {
     factory(root, {}, root._, root.Backbone);
@@ -1729,4 +1729,6 @@
 
 		return child;
 	};
+
+	return Backbone;
 }));
