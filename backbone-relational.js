@@ -9,9 +9,9 @@
  */
 (function(root, factory) {
   if (typeof exports !== 'undefined') {
-    factory(root, exports, require('underscore'), require('backbone'));
+    factory(root, exports, require('lodash'), require('backbone'));
   } else if (typeof define === 'function' && define.amd) {
-    define('backbone-relational', ['underscore', 'backbone', 'exports'], function(_, Backbone, exports) {
+    define('backbone-relational', ['lodash', 'backbone', 'exports'], function(_, Backbone, exports) {
       factory(root, exports, _, Backbone);
     });
   } else {
@@ -1729,4 +1729,4 @@
 
 		return child;
 	};
-}))();
+}));
