@@ -1,4 +1,4 @@
-# Backbone-relational
+# Backbone-relational AMD Fork
 Backbone-relational provides one-to-one, one-to-many and many-to-one relations between models for [Backbone](https://github.com/documentcloud/backbone). To use relations, extend `Backbone.RelationalModel` (instead of the regular `Backbone.Model`) and define a property `relations`, containing an array of option objects. Each relation must define (as a minimum) the `type`, `key` and `relatedModel`. Available relation types are `Backbone.HasOne` and `Backbone.HasMany`. Backbone-relational features:
 
 * Bidirectional relations, which notify related models of changes through events.
@@ -69,7 +69,7 @@ Animal = Backbone.RelationalModel.extend({
 
 AnimalCollection = Backbone.Collection.extend({
 	model: Animal,
-	
+
 	url: function( models ) {
 		return '/animal/' + ( models ? 'set/' + _.pluck( models, 'id' ).join(';') + '/' : '' );
 	}
@@ -158,7 +158,7 @@ For example, a Rails backend may provide the keys suffixed with `_id` or `_ids`.
 
 So you may be provided with data containing `animal_ids`, while you want to access this relation as `zoo.get( 'animals' );`.
 
-**NOTE**: for backward compatibility reasons, setting `keySource` will set `keyDestination` as well. 
+**NOTE**: for backward compatibility reasons, setting `keySource` will set `keyDestination` as well.
 This means that when saving `zoo`, the `animals` attribute will be serialized back into the `animal_ids` key.
 
 **WARNING**: when using a `keySource`, you should not use that attribute name for other purposes.
@@ -305,11 +305,11 @@ Search for a model instance in the `Backbone.Relational.store`.
 
 ### Events
 
-* `add`: triggered on addition to a `HasMany` relation.  
+* `add`: triggered on addition to a `HasMany` relation.
   Bind to `add:<key>`; arguments: `(addedModel<Backbone.Model>, related<Backbone.Collection>)`.
-* `remove`: triggered on removal from a `HasMany` relation.  
+* `remove`: triggered on removal from a `HasMany` relation.
   Bind to `remove:<key>`; arguments: `(removedModel<Backbone.Model>, related<Backbone.Collection>)`.
-* `update`: triggered on changes to the key itself on `HasMany` and `HasOne` relations.  
+* `update`: triggered on changes to the key itself on `HasMany` and `HasOne` relations.
   Bind to `update:<key>`; arguments: `(model<Backbone.Model>, related<Backbone.Model|Backbone.Collection>)`.
 
 
@@ -417,7 +417,7 @@ paul.get('user').toJSON();
 				id: "person-1",
 				name: "Paul",
 				livesIn: {
-					id: "house-1",	
+					id: "house-1",
 					location: "in the middle of the street",
 					occupants: ["person-1"] // just the id, since 'includeInJSON' references the 'idAttribute'
 				},
@@ -447,7 +447,7 @@ paul.bind( 'update:livesIn', function( model, attr ) {
 
 // Modifying either side of a bi-directional relation updates the other side automatically.
 // Make paul homeless; triggers 'remove:occupants' on ourHouse, and 'update:livesIn' on paul
-ourHouse.get('occupants').remove( paul.id ); 
+ourHouse.get('occupants').remove( paul.id );
 
 paul.get('livesIn'); // yup; nothing.
 
@@ -488,7 +488,7 @@ Person = Backbone.RelationalModel.extend({
 			}
 		}
 	],
-	
+
 	initialize: function() {
 		// do whatever you want :)
 	}
@@ -541,7 +541,7 @@ Backbone.Collection.prototype.fetch = function( options ) {
 
 	// Remove old models
 	this.reset();
-	
+
 	// Call 'fetch', and trigger an event when done.
 	var dit = this,
 		request = _fetch.call( this, options );
